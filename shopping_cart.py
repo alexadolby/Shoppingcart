@@ -35,26 +35,28 @@ def to_usd(my_price):
     """
     return f"${my_price:,.2f}" #> $12,000.71
 
-
 total_price = 0
+tax = 0
 selected_ids = []
 import datetime
+total = 0 
 
-
-
-
+for p in products:
+    price_usd = " (${0:.2f})".format(p["price"])
 
 while True:
-        selected_id = input("Please input a product identifier: ")
+        selected_id = input("Please input a product identifier, when finished type DONE: ")
         if selected_id == "DONE":
              break
         else:
              selected_ids.append(selected_id)
 
 print("___________________________________")
+
 print("ALEXA'S GROCERY")
 print("www.alexasgrocery.com")
 print("___________________________________")
+
 now = datetime.datetime.now()
 print(now.strftime("%Y-%m-%d, %I:%M %p")) #https://www.programiz.com/python-programming/datetime/strftime
 print("___________________________________")
@@ -63,11 +65,23 @@ for selected_id in selected_ids:
     matching_products = [p for p in products if str(p["id"]) == str(selected_id)]
     matching_product = matching_products[0]
     total_price = total_price + matching_product["price"]
-    print("SELECTED PRODUCT: " + matching_product["name"] + " " + str(matching_product["price"]))
+    tax = total_price * 0.0875
+    total = total_price + tax
+    print(". . .  " + matching_product["name"] + " " + str(matching_product["price"]))
+
+
+#for p in products:
+    #price_usd = " (${0:.2f})".format(p["price"])
+   # print(" + " + p["name"] + price_usd)
 
 print("___________________________________")
-print("TOTAL PRICE: " + str(total_price))
+
+print("SUBTOTAL: " + str(total_price))
+print("TAX: " + str(tax))
+print("TOTAL: " + str(total))
+
 print("___________________________________")
+
 print("THANK YOU FOR SHOPPING (: ")
 print("___________________________________")
 
