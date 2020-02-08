@@ -28,6 +28,13 @@ products = [
 print(products)
 
 
+selected_id = input("Please input a product identifier: ")
+
+print(selected_id)
+print(type(selected_id))
+
+
+
 #A grocery store name of your choice
 #A grocery store phone number and/or website URL and/or address of choice
 #The date and time of the beginning of the checkout process, formatted in a human-friendly way (e.g. 2020-02-07 03:54 PM)
