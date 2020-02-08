@@ -25,22 +25,39 @@ products = [
     {"id":20, "name": "Pomegranate Cranberry & Aloe Vera Enrich Drink", "department": "beverages", "aisle": "juice nectars", "price": 4.25}
 ] # based on data from Instacart: https://www.instacart.com/datasets/grocery-shopping-2017
 
+def to_usd(my_price):
+    """
+    Converts a numeric value to usd-formatted string, for printing and display purposes.
+    Source: https://github.com/prof-rossetti/intro-to-python/blob/master/notes/python/datatypes/numbers.md#formatting-as-currency
+    Param: my_price (int or float) like 4000.444444
+    Example: to_usd(4000.444444)
+    Returns: $4,000.44
+    """
+    return f"${my_price:,.2f}" #> $12,000.71
+
+
 total_price = 0
 selected_ids = []
+import datetime
+
+
+
+
 
 while True:
         selected_id = input("Please input a product identifier: ")
         if selected_id == "DONE":
              break
         else:
-             #matching_products = [p for p in products if str(p["id"]) == str(selected_id)]
-             #matching_product = matching_products[0]
-             #total_price = total_price + matching_product["price"]
-             #print("SELECTED PRODUCT: " + matching_product["name"] + " " + str(matching_product["price"]))
              selected_ids.append(selected_id)
 
-#print(matching_product)
-#print(type(matching_product))
+print("___________________________________")
+print("ALEXA'S GROCERY")
+print("www.alexasgrocery.com")
+print("___________________________________")
+now = datetime.datetime.now()
+print(now.strftime("%Y-%m-%d, %I:%M %p")) #https://www.programiz.com/python-programming/datetime/strftime
+print("___________________________________")
 
 for selected_id in selected_ids:
     matching_products = [p for p in products if str(p["id"]) == str(selected_id)]
@@ -48,19 +65,14 @@ for selected_id in selected_ids:
     total_price = total_price + matching_product["price"]
     print("SELECTED PRODUCT: " + matching_product["name"] + " " + str(matching_product["price"]))
 
+print("___________________________________")
 print("TOTAL PRICE: " + str(total_price))
+print("___________________________________")
+print("THANK YOU FOR SHOPPING (: ")
+print("___________________________________")
 
 
-#print(selected_id)
-#print(type(selected_id))
-
-
-
-#A grocery store name of your choice
-#A grocery store phone number and/or website URL and/or address of choice
-#The date and time of the beginning of the checkout process, formatted in a human-friendly way (e.g. 2020-02-07 03:54 PM)
 #The name and price of each shopping cart item, price being formatted as US dollars and cents (e.g. $3.50, etc.)
 #The total cost of all shopping cart items (i.e. the "subtotal"), formatted as US dollars and cents (e.g. $19.47), calculated as the sum of their prices
 #The amount of tax owed (e.g. $1.70), calculated by multiplying the total cost by a New York City sales tax rate of 8.75% (for the purposes of this project, groceries are not exempt from sales tax)
 #The total amount owed, formatted as US dollars and cents (e.g. $21.17), calculated by adding together the amount of tax owed plus the total cost of all shopping cart items
-#A friendly message thanking the customer and/or encouraging the customer to shop again
