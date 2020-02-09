@@ -1,7 +1,5 @@
 # shopping_cart.py
 
-#from pprint import pprint
-
 products = [
     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
     {"id":2, "name": "All-Seasons Salt", "department": "pantry", "aisle": "spices seasonings", "price": 4.99},
@@ -65,20 +63,15 @@ for selected_id in selected_ids:
     matching_products = [p for p in products if str(p["id"]) == str(selected_id)]
     matching_product = matching_products[0]
     total_price = total_price + matching_product["price"]
-    tax = total_price * 0.0875
+    tax = total_price * 0.0875 
     total = total_price + tax
-    print(". . .  " + matching_product["name"] + " " + str(matching_product["price"]))
-
-
-#for p in products:
-    #price_usd = " (${0:.2f})".format(p["price"])
-   # print(" + " + p["name"] + price_usd)
+    print(''". . .  " + matching_product["name"] + " " + "$" + str(matching_product["price"]))
 
 print("___________________________________")
 
-print("SUBTOTAL: " + str(total_price))
-print("TAX: " + str(tax))
-print("TOTAL: " + str(total))
+print("SUBTOTAL: " + to_usd(total_price))
+print("TAX: " + to_usd(tax))
+print("TOTAL: " + to_usd(total))
 
 print("___________________________________")
 
@@ -87,6 +80,5 @@ print("___________________________________")
 
 
 #The name and price of each shopping cart item, price being formatted as US dollars and cents (e.g. $3.50, etc.)
-#The total cost of all shopping cart items (i.e. the "subtotal"), formatted as US dollars and cents (e.g. $19.47), calculated as the sum of their prices
-#The amount of tax owed (e.g. $1.70), calculated by multiplying the total cost by a New York City sales tax rate of 8.75% (for the purposes of this project, groceries are not exempt from sales tax)
-#The total amount owed, formatted as US dollars and cents (e.g. $21.17), calculated by adding together the amount of tax owed plus the total cost of all shopping cart items
+
+
