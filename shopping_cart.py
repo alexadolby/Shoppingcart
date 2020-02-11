@@ -47,38 +47,44 @@ while True:
         if selected_id == "DONE":
              break
         else:
-             selected_ids.append(selected_id)
+            try:
+                matching_products = [p for p in products if str(p["id"]) == str(selected_id)]
+                matching_product = matching_products[0]
+                selected_ids.append(matching_product)
+            except IndexError as e:
+                print("Product not found. Please try again...")
+            
+if not selected_ids:
+    print("Select some products before completing the process. Please try again.")
+    exit()
+# try and except and if not code from --> https://github.com/s2t2/shopping-cart-with-email-receipts/blob/master/checkout.py
 
-print("___________________________________")
+print("_______________________________________________")
 
 print("ALEXA'S GROCERY")
 print("www.alexasgrocery.com")
-print("___________________________________")
+print("_______________________________________________")
 
 now = datetime.datetime.now()
 print(now.strftime("%Y-%m-%d, %I:%M %p")) #https://www.programiz.com/python-programming/datetime/strftime
-print("___________________________________")
+print("_______________________________________________")
 
-for selected_id in selected_ids:
-    matching_products = [p for p in products if str(p["id"]) == str(selected_id)]
-    matching_product = matching_products[0]
-    total_price = total_price + matching_product["price"]
-    tax = total_price * 0.0875 
-    total = total_price + tax
-    print(''". . .  " + matching_product["name"] + " " + "$" + str(matching_product["price"]))
+total_price = sum([float(p["price"]) for p in selected_ids])
+tax = total_price * 0.0875 
+total = total_price + tax
 
-print("___________________________________")
+for p in selected_ids:
+    print(f"... {p['name']} {to_usd(p['price'])}")
+print("_______________________________________________")
 
 print("SUBTOTAL: " + to_usd(total_price))
 print("TAX: " + to_usd(tax))
 print("TOTAL: " + to_usd(total))
 
-print("___________________________________")
+print("_______________________________________________")
 
 print("THANK YOU FOR SHOPPING (: ")
-print("___________________________________")
+print("_______________________________________________")
 
-
-#The name and price of each shopping cart item, price being formatted as US dollars and cents (e.g. $3.50, etc.)
 
 
