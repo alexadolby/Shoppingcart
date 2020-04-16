@@ -17,3 +17,17 @@ Run the program
 ```py
 python shopping_cart.py
 ```
+
+## Testing
+
+Install pytest package (first time only):
+
+```sh
+pip install pytest
+```
+
+Run tests 
+
+```sh
+pytest
+```
