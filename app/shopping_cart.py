@@ -1,5 +1,7 @@
 # shopping_cart.py
 
+import datetime 
+
 products = [
     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
     {"id":2, "name": "All-Seasons Salt", "department": "pantry", "aisle": "spices seasonings", "price": 4.99},
@@ -23,6 +25,7 @@ products = [
     {"id":20, "name": "Pomegranate Cranberry & Aloe Vera Enrich Drink", "department": "beverages", "aisle": "juice nectars", "price": 4.25}
 ] # based on data from Instacart: https://www.instacart.com/datasets/grocery-shopping-2017
 
+
 def to_usd(my_price):
     """
     Converts a numeric value to usd-formatted string, for printing and display purposes.
@@ -33,10 +36,14 @@ def to_usd(my_price):
     """
     return f"${my_price:,.2f}" #> $12,000.71
 
+def line():
+    print("-" * 75)
+
+now = datetime.datetime.now()
+
 total_price = 0
 tax = 0
 selected_ids = []
-import datetime
 total = 0 
 
 for p in products:
@@ -59,32 +66,33 @@ if not selected_ids:
     exit()
 # try and except and if not code from --> https://github.com/s2t2/shopping-cart-with-email-receipts/blob/master/checkout.py
 
-print("_______________________________________________")
 
-print("ALEXA'S GROCERY")
-print("www.alexasgrocery.com")
-print("_______________________________________________")
 
-now = datetime.datetime.now()
-print(now.strftime("%Y-%m-%d, %I:%M %p")) #https://www.programiz.com/python-programming/datetime/strftime
-print("_______________________________________________")
+# receipt output
+
+line()
+print("ALEXA'S GROCERY".center(75, " "))
+print("www.alexasgrocery.com".center(75, " "))
+print(now.strftime("%Y-%m-%d, %I:%M %p").center(75, " ")) #https://www.programiz.com/python-programming/datetime/strftime
+line()
+
+print("Shopping List:")
+for p in selected_ids:
+    print(f" * {p['name']} {to_usd(p['price'])}")
+line()
 
 total_price = sum([float(p["price"]) for p in selected_ids])
 tax = total_price * 0.0875 
 total = total_price + tax
 
-for p in selected_ids:
-    print(f"... {p['name']} {to_usd(p['price'])}")
-print("_______________________________________________")
-
 print("SUBTOTAL: " + to_usd(total_price))
 print("TAX: " + to_usd(tax))
 print("TOTAL: " + to_usd(total))
+line()
 
-print("_______________________________________________")
 
-print("THANK YOU FOR SHOPPING (: ")
-print("_______________________________________________")
+print("THANK YOU FOR SHOPPING (: ".center(75, " "))
+line()
 
 
 
