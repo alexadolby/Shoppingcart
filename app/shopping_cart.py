@@ -41,6 +41,10 @@ def line():
 
 now = datetime.datetime.now()
 
+def get_datetime():
+    formatted_time = now.strftime("%Y-%m-%d, %I:%M %p").center(75, " ")
+    return formatted_time
+
 total_price = 0
 tax = 0
 selected_ids = []
@@ -75,7 +79,8 @@ if __name__ == "__main__":
     line()
     print("ALEXA'S GROCERY".center(75, " "))
     print("www.alexasgrocery.com".center(75, " "))
-    print(now.strftime("%Y-%m-%d, %I:%M %p").center(75, " ")) #https://www.programiz.com/python-programming/datetime/strftime
+    print(get_datetime())
+    #https://www.programiz.com/python-programming/datetime/strftime
     line()
 
     print("Shopping List:")
