@@ -22,6 +22,7 @@ def test_to_usd():
 
 
 def test_human_friendly_timestamp():
+    # display formatted date and time 
     result = get_datetime()
     assert result == now.strftime("%Y-%m-%d, %I:%M %p").center(75, " ")
 

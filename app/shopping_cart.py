@@ -36,14 +36,17 @@ def to_usd(my_price):
     """
     return f"${my_price:,.2f}" #> $12,000.71
 
+
 def line():
     print("-" * 75)
+    # prints lines
 
+# get current date and time to display on receipt    
 now = datetime.datetime.now()
-
 def get_datetime():
     formatted_time = now.strftime("%Y-%m-%d, %I:%M %p").center(75, " ")
     return formatted_time
+
 
 total_price = 0
 tax = 0
@@ -55,6 +58,7 @@ for p in products:
 
 if __name__ == "__main__":
    
+   #User inputs product identifiers until they are done shopping
     while True:
             selected_id = input("Please input a product identifier, when finished type DONE: ")
             if selected_id == "DONE":
@@ -68,6 +72,7 @@ if __name__ == "__main__":
                     print("Product not found. Please try again...")
             
     if not selected_ids:
+        #Incase user types incorrect product identifier
         print("Select some products before completing the process. Please try again.")
         exit()
     
@@ -84,10 +89,12 @@ if __name__ == "__main__":
     line()
 
     print("Shopping List:")
+    #print name and price of each selected item
     for p in selected_ids:
         print(f" * {p['name']} {to_usd(p['price'])}")
     line()
-
+    
+    #Calculate total price and tax for receipt
     total_price = sum([float(p["price"]) for p in selected_ids])
     tax = total_price * 0.06 
     total = total_price + tax
