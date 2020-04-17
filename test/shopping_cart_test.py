@@ -25,8 +25,4 @@ def test_human_friendly_timestamp():
     result = get_datetime()
     assert result == now.strftime("%Y-%m-%d, %I:%M %p").center(75, " ")
 
-#def test find_product():
 
-#def test_calculate_total():
-   # total = total_price(100) + tax
-    #assert result == 106
