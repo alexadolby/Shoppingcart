@@ -49,50 +49,52 @@ total = 0
 for p in products:
     price_usd = " (${0:.2f})".format(p["price"])
 
-while True:
-        selected_id = input("Please input a product identifier, when finished type DONE: ")
-        if selected_id == "DONE":
-             break
-        else:
-            try:
-                matching_products = [p for p in products if str(p["id"]) == str(selected_id)]
-                matching_product = matching_products[0]
-                selected_ids.append(matching_product)
-            except IndexError as e:
-                print("Product not found. Please try again...")
+if __name__ == "__main__":
+   
+    while True:
+            selected_id = input("Please input a product identifier, when finished type DONE: ")
+            if selected_id == "DONE":
+                break
+            else:
+                try:
+                    matching_products = [p for p in products if str(p["id"]) == str(selected_id)]
+                    matching_product = matching_products[0]
+                    selected_ids.append(matching_product)
+                except IndexError as e:
+                    print("Product not found. Please try again...")
             
-if not selected_ids:
-    print("Select some products before completing the process. Please try again.")
-    exit()
-# try and except and if not code from --> https://github.com/s2t2/shopping-cart-with-email-receipts/blob/master/checkout.py
+    if not selected_ids:
+        print("Select some products before completing the process. Please try again.")
+        exit()
+    
+    # try and except and if not code from --> https://github.com/s2t2/shopping-cart-with-email-receipts/blob/master/checkout.py
 
 
+    # receipt output
 
-# receipt output
+    line()
+    print("ALEXA'S GROCERY".center(75, " "))
+    print("www.alexasgrocery.com".center(75, " "))
+    print(now.strftime("%Y-%m-%d, %I:%M %p").center(75, " ")) #https://www.programiz.com/python-programming/datetime/strftime
+    line()
 
-line()
-print("ALEXA'S GROCERY".center(75, " "))
-print("www.alexasgrocery.com".center(75, " "))
-print(now.strftime("%Y-%m-%d, %I:%M %p").center(75, " ")) #https://www.programiz.com/python-programming/datetime/strftime
-line()
+    print("Shopping List:")
+    for p in selected_ids:
+        print(f" * {p['name']} {to_usd(p['price'])}")
+    line()
 
-print("Shopping List:")
-for p in selected_ids:
-    print(f" * {p['name']} {to_usd(p['price'])}")
-line()
+    total_price = sum([float(p["price"]) for p in selected_ids])
+    tax = total_price * 0.06 
+    total = total_price + tax
 
-total_price = sum([float(p["price"]) for p in selected_ids])
-tax = total_price * 0.0875 
-total = total_price + tax
-
-print("SUBTOTAL: " + to_usd(total_price))
-print("TAX: " + to_usd(tax))
-print("TOTAL: " + to_usd(total))
-line()
+    print("SUBTOTAL: " + to_usd(total_price))
+    print("TAX: " + to_usd(tax))
+    print("TOTAL: " + to_usd(total))
+    line()
 
 
-print("THANK YOU FOR SHOPPING (: ".center(75, " "))
-line()
+    print("THANK YOU FOR SHOPPING (: ".center(75, " "))
+    line()
 
 
 
